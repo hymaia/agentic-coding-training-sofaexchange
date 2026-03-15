@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		28F1BBB5C8CE35EC3223DA53 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2720CCD7C17A43C7ED255434 /* Foundation.framework */; };
+		420F084E2F6781FD004E8E24 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 420F084C2F6781FD004E8E24 /* Localizable.strings */; };
+		6E029FED58F8C0B05FF2ED59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D59D423ADE49A659FC46576 /* AppDelegate.swift */; };
+		9C5A622166FF487AFBBC4808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2720CCD7C17A43C7ED255434 /* Foundation.framework */; };
+		A7C317A9B9F904608D623DA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C26B10605992FA1124139A6 /* SceneDelegate.swift */; };
+		E29030F8CEBEC5473069BDCC /* ListingDTOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B537172A9632F68B39142FC /* ListingDTOTests.swift */; };
+		F52FA7E5B16B36A98ECA07A1 /* SearchListingsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE99DE55AAB8BD3635A9010E /* SearchListingsUseCaseTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		420F07D22F678094004E8E24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFE79159F96D3239D323B753 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10934B16005B3A1C2C99CF40;
+			remoteInfo = SofaExchange;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2720CCD7C17A43C7ED255434 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		420F084D2F6781FD004E8E24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		420F084F2F678230004E8E24 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		420F08502F678233004E8E24 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4EDC4A7902CA9D8A3892E9B8 /* SofaExchangeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaExchangeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C26B10605992FA1124139A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		6B537172A9632F68B39142FC /* ListingDTOTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListingDTOTests.swift; sourceTree = "<group>"; };
+		7C18DA6D766105281D24908D /* SofaExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SofaExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D59D423ADE49A659FC46576 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FE99DE55AAB8BD3635A9010E /* SearchListingsUseCaseTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchListingsUseCaseTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		420F080C2F678105004E8E24 /* Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Data; sourceTree = "<group>"; };
+		420F08152F678105004E8E24 /* Domain */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Domain; sourceTree = "<group>"; };
+		420F08272F678105004E8E24 /* Presentation */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Presentation; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5546BB5EE7E031B2E599C3A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C5A622166FF487AFBBC4808 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFE2DFA90C324CCE0A42AB42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28F1BBB5C8CE35EC3223DA53 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		612287A617981A20A3CDB714 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2720CCD7C17A43C7ED255434 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		62BC81887F619F5DB93D4305 /* SofaExchangeTests */ = {
+			isa = PBXGroup;
+			children = (
+				6B537172A9632F68B39142FC /* ListingDTOTests.swift */,
+				FE99DE55AAB8BD3635A9010E /* SearchListingsUseCaseTests.swift */,
+			);
+			path = SofaExchangeTests;
+			sourceTree = "<group>";
+		};
+		68D8C92D2B2D8FDBC6C4702F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				612287A617981A20A3CDB714 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7CB8C1935C3A7D5CAC6B730C /* SofaExchange */ = {
+			isa = PBXGroup;
+			children = (
+				420F084C2F6781FD004E8E24 /* Localizable.strings */,
+				420F080C2F678105004E8E24 /* Data */,
+				420F08152F678105004E8E24 /* Domain */,
+				420F08272F678105004E8E24 /* Presentation */,
+				8D59D423ADE49A659FC46576 /* AppDelegate.swift */,
+				5C26B10605992FA1124139A6 /* SceneDelegate.swift */,
+			);
+			path = SofaExchange;
+			sourceTree = "<group>";
+		};
+		AF6335BCAF62623B84A65D97 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C18DA6D766105281D24908D /* SofaExchange.app */,
+				4EDC4A7902CA9D8A3892E9B8 /* SofaExchangeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F2216E27E92CF1E52230E3F6 = {
+			isa = PBXGroup;
+			children = (
+				AF6335BCAF62623B84A65D97 /* Products */,
+				68D8C92D2B2D8FDBC6C4702F /* Frameworks */,
+				7CB8C1935C3A7D5CAC6B730C /* SofaExchange */,
+				62BC81887F619F5DB93D4305 /* SofaExchangeTests */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10934B16005B3A1C2C99CF40 /* SofaExchange */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7CFC654B70769080EA83DA70 /* Build configuration list for PBXNativeTarget "SofaExchange" */;
+			buildPhases = (
+				990C7E9A455319F9DCC5C53B /* Sources */,
+				5546BB5EE7E031B2E599C3A6 /* Frameworks */,
+				E799BC008BA092A5AA9D6795 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				420F080C2F678105004E8E24 /* Data */,
+				420F08152F678105004E8E24 /* Domain */,
+				420F08272F678105004E8E24 /* Presentation */,
+			);
+			name = SofaExchange;
+			productName = SofaExchange;
+			productReference = 7C18DA6D766105281D24908D /* SofaExchange.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5C188812BCACA28E6E526E56 /* SofaExchangeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8B25884BD5924FFD04BC54C /* Build configuration list for PBXNativeTarget "SofaExchangeTests" */;
+			buildPhases = (
+				6F6FC5A96868599096CDD6EE /* Sources */,
+				EFE2DFA90C324CCE0A42AB42 /* Frameworks */,
+				BD0694B7FD5592D54D59C003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29A48469E40B84FA1E9844FC /* PBXTargetDependency */,
+			);
+			name = SofaExchangeTests;
+			productName = SofaExchangeTests;
+			productReference = 4EDC4A7902CA9D8A3892E9B8 /* SofaExchangeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FFE79159F96D3239D323B753 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = E883D50165D0EC4CF53FCF9B /* Build configuration list for PBXProject "SofaExchange" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				fr,
+				it,
+			);
+			mainGroup = F2216E27E92CF1E52230E3F6;
+			productRefGroup = AF6335BCAF62623B84A65D97 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10934B16005B3A1C2C99CF40 /* SofaExchange */,
+				5C188812BCACA28E6E526E56 /* SofaExchangeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BD0694B7FD5592D54D59C003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E799BC008BA092A5AA9D6795 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				420F084E2F6781FD004E8E24 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6F6FC5A96868599096CDD6EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E29030F8CEBEC5473069BDCC /* ListingDTOTests.swift in Sources */,
+				F52FA7E5B16B36A98ECA07A1 /* SearchListingsUseCaseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		990C7E9A455319F9DCC5C53B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E029FED58F8C0B05FF2ED59 /* AppDelegate.swift in Sources */,
+				A7C317A9B9F904608D623DA6 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		29A48469E40B84FA1E9844FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10934B16005B3A1C2C99CF40 /* SofaExchange */;
+			targetProxy = 420F07D22F678094004E8E24 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		420F084C2F6781FD004E8E24 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				420F084D2F6781FD004E8E24 /* en */,
+				420F084F2F678230004E8E24 /* fr */,
+				420F08502F678233004E8E24 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0468B8918624FC1FE04DD226 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SofaExchange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hymaia.sofaexchange;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		111BF011CAF5FD0737771468 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		25683084D52139799EBC0F85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hymaia.sofaexchangeTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SofaExchange.app/SofaExchange";
+			};
+			name = Debug;
+		};
+		3991A7D861D6ED1D33CD85AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SofaExchange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hymaia.sofaexchange;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E1CE72317A306D63D1BB6B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F696658F5E8C14594BD94422 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hymaia.sofaexchangeTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SofaExchange.app/SofaExchange";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7CFC654B70769080EA83DA70 /* Build configuration list for PBXNativeTarget "SofaExchange" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3991A7D861D6ED1D33CD85AF /* Release */,
+				0468B8918624FC1FE04DD226 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E883D50165D0EC4CF53FCF9B /* Build configuration list for PBXProject "SofaExchange" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E1CE72317A306D63D1BB6B9 /* Debug */,
+				111BF011CAF5FD0737771468 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8B25884BD5924FFD04BC54C /* Build configuration list for PBXNativeTarget "SofaExchangeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F696658F5E8C14594BD94422 /* Release */,
+				25683084D52139799EBC0F85 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FFE79159F96D3239D323B753 /* Project object */;
+}

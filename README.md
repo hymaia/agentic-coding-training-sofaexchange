@@ -40,7 +40,7 @@ npm run dev:web              # http://localhost:5173
 Launch the iOS app:
 
 ```bash
-open apps/ios
+open apps/ios/SofaExchange.xcodeproj
 ```
 
 Then run the `SofaExchange` scheme from Xcode on a simulator (iOS 16+).
@@ -111,7 +111,7 @@ npm run dev                # http://localhost:5173
 
 ## iOS — `apps/ios`
 
-**Stack**: UIKit · Alamofire · Swift · Swift Package Manager
+**Stack**: UIKit · URLSession · Swift · Swift Package Manager
 
 **Architecture**: Clean Architecture — `Domain` / `Data` / `Presentation`
 
@@ -119,9 +119,8 @@ npm run dev                # http://localhost:5173
 
 **Getting started**
 
-1. Open `apps/ios` in Xcode
-2. Xcode resolves Alamofire automatically via SPM
-3. Select an iOS simulator and run
+1. Open `apps/ios/SofaExchange.xcodeproj` in Xcode
+2. Select an iOS simulator and run the `SofaExchange` scheme
 
 To build from the command line (against the iOS simulator SDK):
 
