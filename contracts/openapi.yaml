@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: SofaExchange API
+  version: 1.0.0
+  description: >
+    REST API for browsing sofa listings. All listings are considered always
+    available in this MVP. No authentication required.
+
+servers:
+  - url: http://localhost:3000
+    description: Local development
+
+paths:
+  /listings:
+    get:
+      operationId: getListings
+      summary: Search sofa listings
+      description: >
+        Returns a flat array of sofa listings matching the supplied filter
+        criteria. All filters are optional and combinable.
+      parameters:
+        - name: city
+          in: query
+          description: >
+            One or more cities to include. Repeat the parameter for
+            multiple values: ?city=LONDON&city=PARIS
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/City'
+          style: form
+          explode: true
+
+        - name: minPriceCents
+          in: query
+          description: Minimum price per night in cents (inclusive). Must be >= 0.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+
+        - name: maxPriceCents
+          in: query
+          description: >
+            Maximum price per night in cents (inclusive).
+            Must be >= minPriceCents when both are supplied.
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+
+        - name: hasFreeWifi
+          in: query
+          description: Filter to listings that include free WiFi.
+          required: false
+          schema:
+            type: boolean
+
+        - name: sofaType
+          in: query
+          description: Filter to a specific sofa type.
+          required: false
+          schema:
+            $ref: '#/components/schemas/SofaType'
+
+      responses:
+        '200':
+          description: Matching listings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Listing'
+        '400':
+          description: Invalid query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    City:
+      type: string
+      enum:
+        - LONDON
+        - PARIS
+        - MILAN
+        - MADRID
+        - LISBON
+        - BERLIN
+        - DUBLIN
+        - EDINBURGH
+        - VIENNA
+
+    SofaType:
+      type: string
+      enum:
+        - SOFA_BED
+        - SIMPLE_SOFA
+
+    Listing:
+      type: object
+      required:
+        - id
+        - title
+        - city
+        - pricePerNightCents
+        - sofaType
+        - hasFreeWifi
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        title:
+          type: string
+          example: "Cozy sofa bed in central London"
+        city:
+          $ref: '#/components/schemas/City'
+        pricePerNightCents:
+          type: integer
+          minimum: 0
+          example: 3500
+        sofaType:
+          $ref: '#/components/schemas/SofaType'
+        hasFreeWifi:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    ErrorResponse:
+      type: object
+      required:
+        - statusCode
+        - message
+      properties:
+        statusCode:
+          type: integer
+          example: 400
+        message:
+          oneOf:
+            - type: string
+            - type: array
+              items:
+                type: string
+          example: "City FOOBAR is not supported"
+        error:
+          type: string
+          example: "Bad Request"

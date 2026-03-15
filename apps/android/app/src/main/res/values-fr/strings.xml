@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SofaExchange</string>
+    <string name="search">Rechercher</string>
+    <string name="min_price_hint">Prix min (€)</string>
+    <string name="max_price_hint">Prix max (€)</string>
+    <string name="free_wifi">WiFi gratuit</string>
+    <string name="sofa_type">Type de canapé</string>
+    <string name="no_listings">Aucune annonce trouvée</string>
+    <string name="loading">Chargement…</string>
+    <string name="results_title">Résultats</string>
+    <string name="wifi_included">WiFi inclus</string>
+    <string name="no_wifi">Sans WiFi</string>
+    <string name="per_night">/ nuit</string>
+    <string name="error_title">Erreur</string>
+    <string name="invalid_price_range_title">Plage de prix invalide</string>
+    <string name="invalid_price_range_message">Le prix max doit être supérieur ou égal au prix min.</string>
+    <string name="invalid_min_price">Prix min invalide</string>
+    <string name="invalid_max_price">Prix max invalide</string>
+    <string name="ok">OK</string>
+    <string name="connection_error">Impossible de se connecter au serveur. Avez-vous démarré le serveur ?</string>
+    <string name="sofa_type_any">Tous</string>
+    <string name="sofa_type_sofa_bed">Canapé-lit</string>
+    <string name="sofa_type_simple_sofa">Canapé simple</string>
+    <string name="city_LONDON">Londres</string>
+    <string name="city_PARIS">Paris</string>
+    <string name="city_MILAN">Milan</string>
+    <string name="city_MADRID">Madrid</string>
+    <string name="city_LISBON">Lisbonne</string>
+    <string name="city_BERLIN">Berlin</string>
+    <string name="city_DUBLIN">Dublin</string>
+    <string name="city_EDINBURGH">Édimbourg</string>
+    <string name="city_VIENNA">Vienne</string>
+</resources>

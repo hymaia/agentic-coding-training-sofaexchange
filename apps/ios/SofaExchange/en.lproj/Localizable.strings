@@ -1,0 +1,43 @@
+/* App */
+"app_name" = "SofaExchange";
+
+/* Search screen */
+"cities_label" = "Cities";
+"min_price_placeholder" = "Min price (€)";
+"max_price_placeholder" = "Max price (€)";
+"free_wifi_label" = "Free WiFi";
+"sofa_type_label" = "Sofa Type";
+"sofa_type_any" = "Any";
+"sofa_type_sofa_bed" = "Sofa Bed";
+"sofa_type_simple_sofa" = "Simple Sofa";
+"search_button" = "Search";
+
+/* Results screen */
+"results_title" = "Results";
+"no_listings" = "No listings found.";
+"loading" = "Loading...";
+"wifi_included" = "WiFi included";
+"no_wifi" = "No WiFi";
+"per_night_format" = "€%.2f / night";
+
+/* Errors */
+"error_title" = "Error";
+"invalid_price_range_title" = "Invalid Price Range";
+"invalid_price_range_message" = "Max price must be greater than or equal to min price.";
+"ok_button" = "OK";
+"connection_error" = "Could not connect to the server. Have you started the server?";
+
+/* Cities */
+"city_LONDON" = "London";
+"city_PARIS" = "Paris";
+"city_MILAN" = "Milan";
+"city_MADRID" = "Madrid";
+"city_LISBON" = "Lisbon";
+"city_BERLIN" = "Berlin";
+"city_DUBLIN" = "Dublin";
+"city_EDINBURGH" = "Edinburgh";
+"city_VIENNA" = "Vienna";
+
+/* Sofa types */
+"sofa_type_SOFA_BED" = "Sofa Bed";
+"sofa_type_SIMPLE_SOFA" = "Simple Sofa";

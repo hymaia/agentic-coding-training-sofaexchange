@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cities">
+        <item>@string/city_LONDON</item>
+        <item>@string/city_PARIS</item>
+        <item>@string/city_MILAN</item>
+        <item>@string/city_MADRID</item>
+        <item>@string/city_LISBON</item>
+        <item>@string/city_BERLIN</item>
+        <item>@string/city_DUBLIN</item>
+        <item>@string/city_EDINBURGH</item>
+        <item>@string/city_VIENNA</item>
+    </string-array>
+    <string-array name="sofa_types">
+        <item>@string/sofa_type_any</item>
+        <item>@string/sofa_type_sofa_bed</item>
+        <item>@string/sofa_type_simple_sofa</item>
+    </string-array>
+</resources>

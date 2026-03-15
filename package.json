@@ -1,0 +1,15 @@
+{
+  "name": "sofaexchange",
+  "private": true,
+  "workspaces": ["apps/api", "apps/web"],
+  "scripts": {
+    "dev:api":       "npm run dev --workspace=apps/api",
+    "dev:web":       "npm run dev --workspace=apps/web",
+    "build:api":     "npm run build --workspace=apps/api",
+    "build:web":     "npm run build --workspace=apps/web",
+    "test:api":      "npm run test --workspace=apps/api",
+    "test:web":      "npm run test --workspace=apps/web",
+    "db:migrate":    "cd apps/api && npx prisma migrate dev",
+    "db:seed":       "cd apps/api && npx prisma db seed"
+  }
+}
