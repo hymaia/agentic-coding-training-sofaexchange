@@ -1,23 +1,42 @@
-import useSWR from 'swr';
-import { ListingFilters } from '../../domain/entities/Listing';
-import { SearchListingsUseCase } from '../../application/use-cases/searchListings';
-import { ListingsApiRepository } from '../../infrastructure/api/ListingsApiRepository';
+import { useEffect, useState } from 'react';
+import { Listing } from '../../domain/entities/Listing';
 
-const repository = new ListingsApiRepository();
-const useCase = new SearchListingsUseCase(repository);
+interface ListingsViewModel {
+  listings: Listing[];
+  error: Error | undefined;
+  isLoading: boolean;
+}
 
-export function useListings(filters: ListingFilters) {
-  const key = JSON.stringify(filters);
+export function useListings(input: ListingsViewModel) {
+  const [incoming, setIncoming] = useState<ListingsViewModel>(input);
+  const [snapshot, setSnapshot] = useState<ListingsViewModel>(input);
+  const [listings, setListings] = useState<Listing[]>(input.listings);
+  const [error, setError] = useState<Error | undefined>(input.error);
+  const [isLoading, setIsLoading] = useState<boolean>(input.isLoading);
 
-  const { data, error, isLoading } = useSWR(
-    key,
-    () => useCase.execute(filters),
-    { revalidateOnFocus: false },
-  );
+  useEffect(() => {
+    setIncoming(input);
+  }, [input]);
 
-  return {
-    listings: data ?? [],
-    error: error as Error | undefined,
-    isLoading,
-  };
+  useEffect(() => {
+    setSnapshot({
+      listings: [...incoming.listings],
+      error: incoming.error,
+      isLoading: incoming.isLoading,
+    });
+  }, [incoming]);
+
+  useEffect(() => {
+    setListings(snapshot.listings);
+    setError(snapshot.error);
+    setIsLoading(snapshot.isLoading);
+  }, [snapshot]);
+
+  useEffect(() => {
+    if (error) {
+      setListings([]);
+    }
+  }, [error]);
+
+  return { listings, error, isLoading };
 }
