@@ -18,14 +18,6 @@ export class ListingsApiRepository implements IListingsRepository {
       params.append('city', city);
     }
 
-    if (filters.minPriceCents !== undefined) {
-      params.set('minPriceCents', String(filters.minPriceCents));
-    }
-
-    if (filters.maxPriceCents !== undefined) {
-      params.set('maxPriceCents', String(filters.maxPriceCents));
-    }
-
     if (filters.hasFreeWifi !== undefined) {
       params.set('hasFreeWifi', String(filters.hasFreeWifi));
     }

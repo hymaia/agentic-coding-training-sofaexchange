@@ -3,7 +3,6 @@ package com.sofaexchange.presentation.search
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.sofaexchange.R
@@ -53,32 +52,6 @@ class SearchActivity : AppCompatActivity() {
 
     private fun setupSearchButton() {
         binding.searchButton.setOnClickListener {
-            val minText = binding.minPriceEditText.text?.toString()
-            val maxText = binding.maxPriceEditText.text?.toString()
-
-            val minPriceCents = if (minText.isNullOrBlank()) null else {
-                val euros = minText.toDoubleOrNull()
-                if (euros == null) {
-                    Toast.makeText(this, getString(R.string.invalid_min_price), Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                (euros * 100).toInt()
-            }
-
-            val maxPriceCents = if (maxText.isNullOrBlank()) null else {
-                val euros = maxText.toDoubleOrNull()
-                if (euros == null) {
-                    Toast.makeText(this, getString(R.string.invalid_max_price), Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                (euros * 100).toInt()
-            }
-
-            if (minPriceCents != null && maxPriceCents != null && minPriceCents > maxPriceCents) {
-                Toast.makeText(this, getString(R.string.invalid_price_range_message), Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
             val selectedCities = selectedCity?.let { listOf(it) } ?: emptyList()
 
             // Sofa type: index 0 = "Any", indices 1+ map to SofaType values
@@ -88,12 +61,10 @@ class SearchActivity : AppCompatActivity() {
             val hasFreeWifi = if (binding.wifiSwitch.isChecked) true else null
 
             val intent = ResultsActivity.newIntent(
-                context       = this,
-                cityNames     = selectedCities.map { it.name },
-                minPriceCents = minPriceCents,
-                maxPriceCents = maxPriceCents,
-                hasFreeWifi   = hasFreeWifi,
-                sofaTypeName  = selectedSofaType?.name,
+                context      = this,
+                cityNames    = selectedCities.map { it.name },
+                hasFreeWifi  = hasFreeWifi,
+                sofaTypeName = selectedSofaType?.name,
             )
             startActivity(intent)
         }

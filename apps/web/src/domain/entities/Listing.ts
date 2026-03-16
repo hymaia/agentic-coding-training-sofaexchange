@@ -36,8 +36,6 @@ export interface Listing {
 
 export interface ListingFilters {
   city: City[];
-  minPriceCents?: number;
-  maxPriceCents?: number;
   hasFreeWifi?: boolean;
   sofaType?: SofaType;
 }

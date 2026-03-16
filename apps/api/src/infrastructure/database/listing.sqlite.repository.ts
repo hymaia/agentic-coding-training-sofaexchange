@@ -37,15 +37,6 @@ export class ListingSqliteRepository implements IListingRepository {
       conditions.push('sofaType = ?');
       params.push(query.sofaType);
     }
-    if (query.minPriceCents !== undefined) {
-      conditions.push('pricePerNightCents >= ?');
-      params.push(query.minPriceCents);
-    }
-    if (query.maxPriceCents !== undefined) {
-      conditions.push('pricePerNightCents <= ?');
-      params.push(query.maxPriceCents);
-    }
-
     const where = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
     const sql   = `SELECT * FROM listings ${where} ORDER BY createdAt ASC`;
 

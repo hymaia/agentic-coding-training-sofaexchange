@@ -6,6 +6,7 @@
     <string name="max_price_hint">Prezzo max (€)</string>
     <string name="free_wifi">WiFi gratuito</string>
     <string name="cities_label">Città</string>
+    <string name="price_label">Prezzo</string>
     <string name="sofa_type">Tipo di divano</string>
     <string name="no_listings">Nessun annuncio trovato</string>
     <string name="loading">Caricamento…</string>

@@ -79,8 +79,6 @@ class ResultsViewModel(
             runCatching {
                 api.getListings(
                     city = params.cities.map { it.name }.takeIf { it.isNotEmpty() },
-                    minPriceCents = params.minPriceCents,
-                    maxPriceCents = params.maxPriceCents,
                     hasFreeWifi = params.hasFreeWifi,
                     sofaType = params.sofaType?.name,
                 )

@@ -14,8 +14,6 @@ final class ListingsRemoteDataSource {
 
         var queryItems: [URLQueryItem] = []
         queryItems.append(contentsOf: query.cities.map { URLQueryItem(name: "city", value: $0.rawValue) })
-        if let min = query.minPriceCents { queryItems.append(URLQueryItem(name: "minPriceCents", value: String(min))) }
-        if let max = query.maxPriceCents { queryItems.append(URLQueryItem(name: "maxPriceCents", value: String(max))) }
         if let wifi = query.hasFreeWifi { queryItems.append(URLQueryItem(name: "hasFreeWifi", value: String(wifi))) }
         if let type = query.sofaType { queryItems.append(URLQueryItem(name: "sofaType", value: type.rawValue)) }
         components.queryItems = queryItems.isEmpty ? nil : queryItems

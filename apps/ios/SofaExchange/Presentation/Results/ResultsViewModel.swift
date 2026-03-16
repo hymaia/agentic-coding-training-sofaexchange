@@ -102,8 +102,6 @@ final class ResultsViewModel: ObservableObject {
     private func serialize(query: SearchQuery) -> String {
         let wire = QueryWire(
             cities: query.cities.map(\.rawValue),
-            minPriceCents: query.minPriceCents,
-            maxPriceCents: query.maxPriceCents,
             hasFreeWifi: query.hasFreeWifi,
             sofaType: query.sofaType?.rawValue
         )
@@ -119,8 +117,6 @@ final class ResultsViewModel: ObservableObject {
 
         var items: [URLQueryItem] = []
         items.append(contentsOf: wire.cities.map { URLQueryItem(name: "city", value: $0) })
-        if let min = wire.minPriceCents { items.append(URLQueryItem(name: "minPriceCents", value: String(min))) }
-        if let max = wire.maxPriceCents { items.append(URLQueryItem(name: "maxPriceCents", value: String(max))) }
         if let wifi = wire.hasFreeWifi { items.append(URLQueryItem(name: "hasFreeWifi", value: String(wifi))) }
         if let type = wire.sofaType { items.append(URLQueryItem(name: "sofaType", value: type)) }
         return items
@@ -129,8 +125,6 @@ final class ResultsViewModel: ObservableObject {
 
 private struct QueryWire: Codable {
     let cities: [String]
-    let minPriceCents: Int?
-    let maxPriceCents: Int?
     let hasFreeWifi: Bool?
     let sofaType: String?
 }

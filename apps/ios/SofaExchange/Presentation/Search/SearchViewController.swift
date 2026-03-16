@@ -16,6 +16,15 @@ final class SearchViewController: UIViewController {
         return label
     }()
 
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString("price_label", comment: "")
+        label.font = .boldSystemFont(ofSize: 16)
+        label.textColor = .heNavy
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     private let cityMenuButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -139,6 +148,7 @@ final class SearchViewController: UIViewController {
 
         contentView.addSubview(cityLabel)
         contentView.addSubview(cityMenuButton)
+        contentView.addSubview(priceLabel)
         contentView.addSubview(priceStack)
         contentView.addSubview(wifiRow)
         contentView.addSubview(sofaLabel)
@@ -155,7 +165,11 @@ final class SearchViewController: UIViewController {
             cityMenuButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             cityMenuButton.heightAnchor.constraint(equalToConstant: 52),
 
-            priceStack.topAnchor.constraint(equalTo: cityMenuButton.bottomAnchor, constant: padding),
+            priceLabel.topAnchor.constraint(equalTo: cityMenuButton.bottomAnchor, constant: padding),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+
+            priceStack.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
             priceStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             priceStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             minPriceField.heightAnchor.constraint(equalToConstant: 52),
@@ -193,8 +207,8 @@ final class SearchViewController: UIViewController {
             logoImageView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             logoImageView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             logoImageView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 160),
-            logoImageView.heightAnchor.constraint(equalToConstant: 32),
+            logoImageView.widthAnchor.constraint(equalToConstant: 200),
+            logoImageView.heightAnchor.constraint(equalToConstant: 40),
         ])
         navigationItem.titleView = container
     }
@@ -232,7 +246,7 @@ final class SearchViewController: UIViewController {
         var config = searchButton.configuration ?? UIButton.Configuration.filled()
         config.baseBackgroundColor = .heOrange
         config.baseForegroundColor = .white
-        config.cornerStyle = .medium
+        config.cornerStyle = .capsule
         searchButton.configuration = config
 
         applyGlassBackground(to: cityMenuButton, tint: UIColor.heGold.withAlphaComponent(0.20), interactive: true)
@@ -309,29 +323,6 @@ final class SearchViewController: UIViewController {
     @objc private func searchTapped() {
         // Dismiss keyboard / picker
         view.endEditing(true)
-
-        // Parse price fields
-        let minText = minPriceField.text ?? ""
-        let maxText = maxPriceField.text ?? ""
-
-        let minEuros = Double(minText)
-        let maxEuros = Double(maxText)
-
-        // Validation: if both are provided, max must be >= min
-        if let min = minEuros, let max = maxEuros, max < min {
-            let alert = UIAlertController(
-                title: NSLocalizedString("invalid_price_range_title", comment: ""),
-                message: NSLocalizedString("invalid_price_range_message", comment: ""),
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: NSLocalizedString("ok_button", comment: ""), style: .default))
-            present(alert, animated: true)
-            return
-        }
-
-        // Convert euros to cents
-        viewModel.minPriceCents = minEuros.map { Int($0 * 100) }
-        viewModel.maxPriceCents = maxEuros.map { Int($0 * 100) }
 
         // City
         viewModel.selectedCities = selectedCity.map { [$0] } ?? []

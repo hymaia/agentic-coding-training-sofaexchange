@@ -3,6 +3,7 @@
 
 /* Search screen */
 "cities_label" = "Cities";
+"price_label" = "Price";
 "min_price_placeholder" = "Min price (€)";
 "max_price_placeholder" = "Max price (€)";
 "free_wifi_label" = "Free WiFi";

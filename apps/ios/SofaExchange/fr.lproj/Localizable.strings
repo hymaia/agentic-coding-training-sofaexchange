@@ -1,5 +1,6 @@
 "app_name" = "SofaExchange";
 "cities_label" = "Villes";
+"price_label" = "Prix";
 "min_price_placeholder" = "Prix min (€)";
 "max_price_placeholder" = "Prix max (€)";
 "free_wifi_label" = "WiFi gratuit";

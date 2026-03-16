@@ -80,39 +80,29 @@ class ResultsActivity : AppCompatActivity() {
         val cityNames = intent.getStringArrayListExtra(EXTRA_CITY_NAMES) ?: emptyList<String>()
         val cities = cityNames.mapNotNull { City.fromApiValue(it) }
 
-        val minPriceCents = intent.getIntExtra(EXTRA_MIN_PRICE_CENTS, -1).takeIf { it >= 0 }
-        val maxPriceCents = intent.getIntExtra(EXTRA_MAX_PRICE_CENTS, -1).takeIf { it >= 0 }
         val hasFreeWifi = if (intent.hasExtra(EXTRA_HAS_FREE_WIFI)) intent.getBooleanExtra(EXTRA_HAS_FREE_WIFI, false) else null
         val sofaTypeName = intent.getStringExtra(EXTRA_SOFA_TYPE_NAME)
         val sofaType = sofaTypeName?.let { SofaType.fromApiValue(it) }
 
         return SearchParams(
-            cities        = cities,
-            minPriceCents = minPriceCents,
-            maxPriceCents = maxPriceCents,
-            hasFreeWifi   = hasFreeWifi,
-            sofaType      = sofaType,
+            cities      = cities,
+            hasFreeWifi = hasFreeWifi,
+            sofaType    = sofaType,
         )
     }
 
     companion object {
         private const val EXTRA_CITY_NAMES     = "extra_city_names"
-        private const val EXTRA_MIN_PRICE_CENTS = "extra_min_price_cents"
-        private const val EXTRA_MAX_PRICE_CENTS = "extra_max_price_cents"
         private const val EXTRA_HAS_FREE_WIFI  = "extra_has_free_wifi"
         private const val EXTRA_SOFA_TYPE_NAME = "extra_sofa_type_name"
 
         fun newIntent(
             context: Context,
             cityNames: List<String>,
-            minPriceCents: Int?,
-            maxPriceCents: Int?,
             hasFreeWifi: Boolean?,
             sofaTypeName: String?,
         ): Intent = Intent(context, ResultsActivity::class.java).apply {
             putStringArrayListExtra(EXTRA_CITY_NAMES, ArrayList(cityNames))
-            minPriceCents?.let { putExtra(EXTRA_MIN_PRICE_CENTS, it) }
-            maxPriceCents?.let { putExtra(EXTRA_MAX_PRICE_CENTS, it) }
             hasFreeWifi?.let { putExtra(EXTRA_HAS_FREE_WIFI, it) }
             sofaTypeName?.let { putExtra(EXTRA_SOFA_TYPE_NAME, it) }
         }

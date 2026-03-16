@@ -12,11 +12,9 @@ class ListingsRepositoryImpl(
 
     override suspend fun search(params: SearchParams): List<Listing> {
         val dtos = api.getListings(
-            city          = params.cities.map { it.name }.takeIf { it.isNotEmpty() },
-            minPriceCents = params.minPriceCents,
-            maxPriceCents = params.maxPriceCents,
-            hasFreeWifi   = params.hasFreeWifi,
-            sofaType      = params.sofaType?.name,
+            city        = params.cities.map { it.name }.takeIf { it.isNotEmpty() },
+            hasFreeWifi = params.hasFreeWifi,
+            sofaType    = params.sofaType?.name,
         )
         return dtos.mapNotNull(ListingMapper::toDomain)
     }
