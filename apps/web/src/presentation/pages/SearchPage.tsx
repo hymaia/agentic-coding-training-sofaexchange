@@ -31,7 +31,6 @@ export function SearchPage() {
   const { t } = useTranslation();
   const [filters, setFilters] = useState<ListingFilters>({ city: [] });
   const [queryFilters, setQueryFilters] = useState<ListingFilters>({ city: [] });
-  const [syncMarker, setSyncMarker] = useState<number>(0);
   const [serializedFilters, setSerializedFilters] = useState<string>(JSON.stringify({ city: [] }));
   const [requestUrl, setRequestUrl] = useState<string>(buildUrl({ city: [] }));
   const [fetchCycle, setFetchCycle] = useState<number>(0);
@@ -46,14 +45,9 @@ export function SearchPage() {
     isLoading: localLoading,
   });
 
-  useEffect(() => {
-    setSyncMarker(Date.now());
-  }, [filters]);
-
-  useEffect(() => {
-    if (syncMarker === 0) return;
+  function handleSearch() {
     setQueryFilters({ ...filters });
-  }, [filters, syncMarker]);
+  }
 
   useEffect(() => {
     setSerializedFilters(JSON.stringify(queryFilters));
@@ -133,7 +127,7 @@ export function SearchPage() {
         <img className="app-logo" src={logo} alt={t('app_name')} />
         <LanguageSwitcher />
       </header>
-      <SearchForm filters={filters} onChange={setFilters} />
+      <SearchForm filters={filters} onChange={setFilters} onSearch={handleSearch} />
       <ListingList listings={listings} isLoading={isLoading} error={error} />
     </main>
   );

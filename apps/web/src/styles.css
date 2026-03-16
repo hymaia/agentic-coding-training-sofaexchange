@@ -141,6 +141,24 @@ body {
   margin-bottom: 1rem;
 }
 
+.search-button {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 1.25rem;
+  background: var(--he-orange);
+  color: var(--he-white);
+  border: none;
+  border-radius: 0.55rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+
+.search-button:hover {
+  background: #c44d0c;
+}
+
 .listing-grid {
   margin: 1rem 0 0;
   padding: 0;
