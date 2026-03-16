@@ -11,25 +11,24 @@ final class SearchViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("cities_label", comment: "")
         label.font = .boldSystemFont(ofSize: 16)
+        label.textColor = .heNavy
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private let cityTableView: UITableView = {
-        let tv = UITableView()
-        tv.isScrollEnabled = false
-        tv.layer.borderWidth = 1
-        tv.layer.borderColor = UIColor.systemGray4.cgColor
-        tv.layer.cornerRadius = 8
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
+    private let cityMenuButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.contentHorizontalAlignment = .left
+        button.tintColor = .heMuted
+        button.showsMenuAsPrimaryAction = true
+        return button
     }()
 
     private let minPriceField: UITextField = {
         let tf = UITextField()
         tf.placeholder = NSLocalizedString("min_price_placeholder", comment: "")
         tf.keyboardType = .decimalPad
-        tf.borderStyle = .roundedRect
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -38,7 +37,6 @@ final class SearchViewController: UIViewController {
         let tf = UITextField()
         tf.placeholder = NSLocalizedString("max_price_placeholder", comment: "")
         tf.keyboardType = .decimalPad
-        tf.borderStyle = .roundedRect
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
@@ -46,6 +44,7 @@ final class SearchViewController: UIViewController {
     private let wifiLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("free_wifi_label", comment: "")
+        label.textColor = .heNavy
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -81,16 +80,20 @@ final class SearchViewController: UIViewController {
 
     private let viewModel = SearchViewModel()
     private let cities = City.allCases
+    private var selectedCity: City? = nil
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = NSLocalizedString("app_name", comment: "")
-        view.backgroundColor = .systemBackground
+        title = ""
+        view.backgroundColor = .heSurface
+        setupHeaderLogo()
         setupScrollView()
-        setupCityTableView()
+        setupCityMenu()
         setupSearchButton()
+        applyBrandStyles()
+        updateCityMenuButtonText()
     }
 
     // MARK: - Setup
@@ -115,7 +118,6 @@ final class SearchViewController: UIViewController {
         ])
 
         let padding: CGFloat = 16
-        let cityTableHeight = CGFloat(cities.count) * 44
 
         let priceStack = UIStackView(arrangedSubviews: [minPriceField, maxPriceField])
         priceStack.axis = .horizontal
@@ -132,10 +134,11 @@ final class SearchViewController: UIViewController {
         let sofaLabel = UILabel()
         sofaLabel.text = NSLocalizedString("sofa_type_label", comment: "")
         sofaLabel.font = .boldSystemFont(ofSize: 16)
+        sofaLabel.textColor = .heNavy
         sofaLabel.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(cityLabel)
-        contentView.addSubview(cityTableView)
+        contentView.addSubview(cityMenuButton)
         contentView.addSubview(priceStack)
         contentView.addSubview(wifiRow)
         contentView.addSubview(sofaLabel)
@@ -147,14 +150,16 @@ final class SearchViewController: UIViewController {
             cityLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             cityLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
 
-            cityTableView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 8),
-            cityTableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            cityTableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            cityTableView.heightAnchor.constraint(equalToConstant: cityTableHeight),
+            cityMenuButton.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 8),
+            cityMenuButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            cityMenuButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            cityMenuButton.heightAnchor.constraint(equalToConstant: 52),
 
-            priceStack.topAnchor.constraint(equalTo: cityTableView.bottomAnchor, constant: padding),
+            priceStack.topAnchor.constraint(equalTo: cityMenuButton.bottomAnchor, constant: padding),
             priceStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             priceStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            minPriceField.heightAnchor.constraint(equalToConstant: 52),
+            maxPriceField.heightAnchor.constraint(equalToConstant: 52),
 
             wifiRow.topAnchor.constraint(equalTo: priceStack.bottomAnchor, constant: padding),
             wifiRow.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
@@ -176,20 +181,133 @@ final class SearchViewController: UIViewController {
         ])
     }
 
-    private func setupCityTableView() {
-        cityTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CityCell")
-        cityTableView.dataSource = self
-        cityTableView.delegate = self
+    private func setupHeaderLogo() {
+        let logoImageView = UIImageView(image: Self.loadLogoImage())
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        let container = UIView()
+        container.addSubview(logoImageView)
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: container.topAnchor),
+            logoImageView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            logoImageView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            logoImageView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            logoImageView.widthAnchor.constraint(equalToConstant: 160),
+            logoImageView.heightAnchor.constraint(equalToConstant: 32),
+        ])
+        navigationItem.titleView = container
+    }
+
+    private func setupCityMenu() {
+        rebuildCityMenu()
     }
 
     private func setupSearchButton() {
         searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
     }
 
+    private func applyBrandStyles() {
+        [minPriceField, maxPriceField].forEach { textField in
+            textField.borderStyle = .none
+            textField.backgroundColor = .clear
+            textField.textColor = .heNavy
+
+            let spacer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+            textField.leftView = spacer
+            textField.leftViewMode = .always
+        }
+
+        cityMenuButton.backgroundColor = .clear
+        cityMenuButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        cityMenuButton.layer.borderWidth = 1
+        cityMenuButton.layer.borderColor = UIColor.white.withAlphaComponent(0.30).cgColor
+
+        wifiSwitch.onTintColor = .heOrange
+
+        sofaTypeControl.selectedSegmentTintColor = .heOrange
+        sofaTypeControl.setTitleTextAttributes([.foregroundColor: UIColor.heNavy], for: .normal)
+        sofaTypeControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+
+        var config = searchButton.configuration ?? UIButton.Configuration.filled()
+        config.baseBackgroundColor = .heOrange
+        config.baseForegroundColor = .white
+        config.cornerStyle = .medium
+        searchButton.configuration = config
+
+        applyGlassBackground(to: cityMenuButton, tint: UIColor.heGold.withAlphaComponent(0.20), interactive: true)
+        applyGlassBackground(to: minPriceField, tint: UIColor.white.withAlphaComponent(0.10), interactive: false)
+        applyGlassBackground(to: maxPriceField, tint: UIColor.white.withAlphaComponent(0.10), interactive: false)
+    }
+
+    private func applyGlassBackground(to view: UIView, tint: UIColor, interactive: Bool) {
+        let glassView = UIVisualEffectView(effect: makeGlassEffect(tint: tint, interactive: interactive))
+        glassView.translatesAutoresizingMaskIntoConstraints = false
+        glassView.isUserInteractionEnabled = false
+        glassView.layer.cornerRadius = 10
+        glassView.clipsToBounds = true
+
+        view.insertSubview(glassView, at: 0)
+        NSLayoutConstraint.activate([
+            glassView.topAnchor.constraint(equalTo: view.topAnchor),
+            glassView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            glassView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            glassView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+    }
+
+    private func makeGlassEffect(tint: UIColor, interactive: Bool) -> UIVisualEffect {
+        if #available(iOS 26.0, *) {
+            let effect = UIGlassEffect()
+            effect.tintColor = tint
+            effect.isInteractive = interactive
+            return effect
+        }
+        return UIBlurEffect(style: .systemMaterial)
+    }
+
+    private func rebuildCityMenu() {
+        let anyTitle = NSLocalizedString("sofa_type_any", comment: "")
+        let actions = [UIAction(title: anyTitle, state: selectedCity == nil ? .on : .off) { [weak self] _ in
+            self?.selectedCity = nil
+            self?.updateCityMenuButtonText()
+            self?.rebuildCityMenu()
+        }] + cities.map { city in
+            UIAction(title: city.displayName, state: self.selectedCity == city ? .on : .off) { [weak self] _ in
+                self?.selectedCity = city
+                self?.updateCityMenuButtonText()
+                self?.rebuildCityMenu()
+            }
+        }
+        cityMenuButton.menu = UIMenu(children: actions)
+    }
+
+    private func updateCityMenuButtonText() {
+        let title = selectedCity?.displayName ?? NSLocalizedString("sofa_type_any", comment: "")
+        cityMenuButton.setTitle(title, for: .normal)
+        cityMenuButton.setTitleColor(.heNavy, for: .normal)
+    }
+
+    private static func loadLogoImage() -> UIImage? {
+        if let image = UIImage(named: "sofa-exchange-logo") {
+            return image
+        }
+        if let path = Bundle.main.path(forResource: "sofa-exchange-logo", ofType: "png") {
+            return UIImage(contentsOfFile: path)
+        }
+        if let path = Bundle.main.path(forResource: "sofa-exchange-logo", ofType: "png", inDirectory: "Assets") {
+            return UIImage(contentsOfFile: path)
+        }
+        return nil
+    }
+
     // MARK: - Actions
 
     @objc private func searchTapped() {
-        // Dismiss keyboard
+        // Dismiss keyboard / picker
         view.endEditing(true)
 
         // Parse price fields
@@ -215,6 +333,9 @@ final class SearchViewController: UIViewController {
         viewModel.minPriceCents = minEuros.map { Int($0 * 100) }
         viewModel.maxPriceCents = maxEuros.map { Int($0 * 100) }
 
+        // City
+        viewModel.selectedCities = selectedCity.map { [$0] } ?? []
+
         // WiFi
         viewModel.hasFreeWifi = wifiSwitch.isOn ? true : nil
 
@@ -228,37 +349,5 @@ final class SearchViewController: UIViewController {
         let query = viewModel.buildQuery()
         let resultsVC = ResultsViewController(query: query)
         navigationController?.pushViewController(resultsVC, animated: true)
-    }
-}
-
-// MARK: - UITableViewDataSource
-
-extension SearchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cities.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
-        let city = cities[indexPath.row]
-        cell.textLabel?.text = city.displayName
-        let isSelected = viewModel.selectedCities.contains(city)
-        cell.accessoryType = isSelected ? .checkmark : .none
-        return cell
-    }
-}
-
-// MARK: - UITableViewDelegate
-
-extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let city = cities[indexPath.row]
-        if let idx = viewModel.selectedCities.firstIndex(of: city) {
-            viewModel.selectedCities.remove(at: idx)
-        } else {
-            viewModel.selectedCities.append(city)
-        }
-        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }

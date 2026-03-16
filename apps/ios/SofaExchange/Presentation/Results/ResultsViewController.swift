@@ -17,12 +17,15 @@ final class ResultsViewController: UIViewController {
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.rowHeight = UITableView.automaticDimension
         tv.estimatedRowHeight = 80
+        tv.backgroundColor = .clear
+        tv.separatorStyle = .none
         return tv
     }()
 
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.hidesWhenStopped = true
+        indicator.color = .heOrange
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
@@ -31,7 +34,7 @@ final class ResultsViewController: UIViewController {
         let label = UILabel()
         label.text = NSLocalizedString("no_listings", comment: "")
         label.textAlignment = .center
-        label.textColor = .secondaryLabel
+        label.textColor = .heMuted
         label.font = .systemFont(ofSize: 16)
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +57,7 @@ final class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("results_title", comment: "")
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .heSurface
 
         setupTableView()
         setupActivityIndicator()

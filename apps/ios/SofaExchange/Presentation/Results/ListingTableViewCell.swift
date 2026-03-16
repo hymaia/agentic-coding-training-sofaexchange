@@ -5,9 +5,28 @@ final class ListingTableViewCell: UITableViewCell {
 
     // MARK: - UI Components
 
+    private let cardView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 12
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.heGold.withAlphaComponent(0.35).cgColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let accentBar: UIView = {
+        let view = UIView()
+        view.backgroundColor = .heGold
+        view.layer.cornerRadius = 2
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
+        label.textColor = .heNavy
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -16,15 +35,15 @@ final class ListingTableViewCell: UITableViewCell {
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
-        label.textColor = .secondaryLabel
+        label.textColor = .heMuted
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = .systemBlue
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.textColor = .heOrange
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,14 +51,14 @@ final class ListingTableViewCell: UITableViewCell {
     private let sofaTypeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
-        label.textColor = .label
+        label.textColor = .heNavy
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private let wifiLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 13)
+        label.font = .systemFont(ofSize: 13, weight: .semibold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -58,6 +77,13 @@ final class ListingTableViewCell: UITableViewCell {
     // MARK: - Layout
 
     private func setupLayout() {
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        selectionStyle = .none
+
+        contentView.addSubview(cardView)
+        cardView.addSubview(accentBar)
+
         let topRow = UIStackView(arrangedSubviews: [cityLabel, priceLabel])
         topRow.axis = .horizontal
         topRow.distribution = .equalSpacing
@@ -70,15 +96,26 @@ final class ListingTableViewCell: UITableViewCell {
 
         let stack = UIStackView(arrangedSubviews: [titleLabel, topRow, bottomRow])
         stack.axis = .vertical
-        stack.spacing = 4
+        stack.spacing = 6
         stack.translatesAutoresizingMaskIntoConstraints = false
 
-        contentView.addSubview(stack)
+        cardView.addSubview(stack)
+
         NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            cardView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            cardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+
+            accentBar.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 10),
+            accentBar.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 10),
+            accentBar.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -10),
+            accentBar.widthAnchor.constraint(equalToConstant: 4),
+
+            stack.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 12),
+            stack.leadingAnchor.constraint(equalTo: accentBar.trailingAnchor, constant: 10),
+            stack.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -12),
+            stack.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -12),
         ])
     }
 
@@ -90,6 +127,6 @@ final class ListingTableViewCell: UITableViewCell {
         priceLabel.text = listing.priceDisplay
         sofaTypeLabel.text = listing.sofaType.displayName
         wifiLabel.text = listing.hasFreeWifi ? NSLocalizedString("wifi_included", comment: "") : NSLocalizedString("no_wifi", comment: "")
-        wifiLabel.textColor = listing.hasFreeWifi ? .systemGreen : .systemGray
+        wifiLabel.textColor = listing.hasFreeWifi ? UIColor(red: 0.184, green: 0.596, blue: 0.231, alpha: 1.0) : .heMuted
     }
 }
