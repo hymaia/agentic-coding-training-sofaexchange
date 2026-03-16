@@ -5,6 +5,7 @@
     <string name="min_price_hint">Min price (€)</string>
     <string name="max_price_hint">Max price (€)</string>
     <string name="free_wifi">Free WiFi</string>
+    <string name="cities_label">Cities</string>
     <string name="sofa_type">Sofa Type</string>
     <string name="no_listings">No listings found</string>
     <string name="loading">Loading…</string>

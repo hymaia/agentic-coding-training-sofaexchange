@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="he_navy">#132035</color>
+    <color name="he_gold">#FFB440</color>
+    <color name="he_orange">#E2590F</color>
+    <color name="he_surface">#F4F5F8</color>
+    <color name="he_muted">#636C7E</color>
+    <color name="white">#FFFFFF</color>
+</resources>

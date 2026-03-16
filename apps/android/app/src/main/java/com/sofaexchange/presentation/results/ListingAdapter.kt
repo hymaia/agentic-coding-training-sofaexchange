@@ -2,7 +2,9 @@ package com.sofaexchange.presentation.results
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.sofaexchange.R
 import com.sofaexchange.databinding.ItemListingBinding
 import com.sofaexchange.domain.model.Listing
 
@@ -17,10 +19,16 @@ class ListingAdapter(
             binding.titleTextView.text    = item.title
             val cityResId = itemView.context.resources.getIdentifier("city_${item.city.name}", "string", itemView.context.packageName)
             binding.cityTextView.text = if (cityResId != 0) itemView.context.getString(cityResId) else item.city.displayName
-            binding.priceTextView.text    = "€${"%.2f".format(item.pricePerNightCents / 100.0)} ${itemView.context.getString(com.sofaexchange.R.string.per_night)}"
+            binding.priceTextView.text    = "€${"%.2f".format(item.pricePerNightCents / 100.0)} ${itemView.context.getString(R.string.per_night)}"
             val sofaResId = itemView.context.resources.getIdentifier("sofa_type_${item.sofaType.name.lowercase()}", "string", itemView.context.packageName)
             binding.sofaTypeTextView.text = if (sofaResId != 0) itemView.context.getString(sofaResId) else item.sofaType.displayName
-            binding.wifiTextView.text     = if (item.hasFreeWifi) itemView.context.getString(com.sofaexchange.R.string.wifi_included) else itemView.context.getString(com.sofaexchange.R.string.no_wifi)
+            binding.wifiTextView.text     = if (item.hasFreeWifi) itemView.context.getString(R.string.wifi_included) else itemView.context.getString(R.string.no_wifi)
+            binding.wifiTextView.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    if (item.hasFreeWifi) android.R.color.holo_green_dark else R.color.he_muted
+                )
+            )
         }
     }
 

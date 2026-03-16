@@ -7,13 +7,12 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sofaexchange.R
 import com.sofaexchange.data.remote.ApiClient
-import com.sofaexchange.data.repository.ListingsRepositoryImpl
 import com.sofaexchange.databinding.ActivityResultsBinding
 import com.sofaexchange.domain.model.City
 import com.sofaexchange.domain.model.SofaType
 import com.sofaexchange.domain.repository.SearchParams
-import com.sofaexchange.domain.usecase.SearchListingsUseCase
 
 class ResultsActivity : AppCompatActivity() {
 
@@ -27,10 +26,7 @@ class ResultsActivity : AppCompatActivity() {
         setContentView(binding.root)
         title = getString(R.string.results_title)
 
-        // Manual DI: wire up the dependency chain without a DI framework
-        val repository = ListingsRepositoryImpl(ApiClient.listingsApi)
-        val useCase = SearchListingsUseCase(repository)
-        val factory = ResultsViewModel.Factory(useCase)
+        val factory = ResultsViewModel.Factory(ApiClient.listingsApi)
         viewModel = ViewModelProvider(this, factory)[ResultsViewModel::class.java]
 
         setupRecyclerView()
@@ -58,7 +54,7 @@ class ResultsActivity : AppCompatActivity() {
                     binding.progressBar.visibility = View.GONE
                     if (state.listings.isEmpty()) {
                         binding.statusTextView.visibility = View.VISIBLE
-                        binding.statusTextView.text = getString(com.sofaexchange.R.string.no_listings)
+                        binding.statusTextView.text = getString(R.string.no_listings)
                         binding.listingsRecyclerView.visibility = View.GONE
                     } else {
                         binding.listingsRecyclerView.visibility = View.VISIBLE

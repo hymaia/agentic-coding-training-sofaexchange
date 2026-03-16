@@ -1,3 +1,9 @@
 <resources>
-    <style name="Theme.SofaExchange" parent="Theme.MaterialComponents.DayNight.DarkActionBar" />
+    <style name="Theme.SofaExchange" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/he_orange</item>
+        <item name="colorPrimaryVariant">@color/he_navy</item>
+        <item name="colorSecondary">@color/he_gold</item>
+        <item name="android:statusBarColor">@color/he_navy</item>
+        <item name="android:windowBackground">@color/he_surface</item>
+    </style>
 </resources>

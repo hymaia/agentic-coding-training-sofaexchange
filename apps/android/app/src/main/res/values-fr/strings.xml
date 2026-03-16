@@ -5,6 +5,7 @@
     <string name="min_price_hint">Prix min (€)</string>
     <string name="max_price_hint">Prix max (€)</string>
     <string name="free_wifi">WiFi gratuit</string>
+    <string name="cities_label">Villes</string>
     <string name="sofa_type">Type de canapé</string>
     <string name="no_listings">Aucune annonce trouvée</string>
     <string name="loading">Chargement…</string>

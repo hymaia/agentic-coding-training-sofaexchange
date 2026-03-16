@@ -3,10 +3,10 @@ package com.sofaexchange.presentation.search
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.sofaexchange.R
 import com.sofaexchange.databinding.ActivitySearchBinding
 import com.sofaexchange.domain.model.City
 import com.sofaexchange.domain.model.SofaType
@@ -16,6 +16,7 @@ class SearchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchBinding
     private lateinit var viewModel: SearchViewModel
+    private var selectedCity: City? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,18 +25,21 @@ class SearchActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
 
-        setupCityListView()
+        setupCityDropdown()
         setupSofaTypeSpinner()
         setupSearchButton()
     }
 
-    private fun setupCityListView() {
-        val cityNames = City.values().map { city ->
+    private fun setupCityDropdown() {
+        val cityOptions = listOf(getString(R.string.sofa_type_any)) + City.values().map { city ->
             getString(resources.getIdentifier("city_${city.name}", "string", packageName))
         }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_multiple_choice, cityNames)
-        binding.cityListView.adapter = adapter
-        binding.cityListView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, cityOptions)
+        binding.cityDropdown.setAdapter(adapter)
+        binding.cityDropdown.setText(cityOptions.first(), false)
+        binding.cityDropdown.setOnItemClickListener { _, _, position, _ ->
+            selectedCity = if (position == 0) null else City.values()[position - 1]
+        }
     }
 
     private fun setupSofaTypeSpinner() {
@@ -75,15 +79,7 @@ class SearchActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Build selected cities from ListView checked items
-            val checkedCities = mutableListOf<City>()
-            val checkedPositions = binding.cityListView.checkedItemPositions
-            val cities = City.values()
-            for (i in cities.indices) {
-                if (checkedPositions.get(i)) {
-                    checkedCities.add(cities[i])
-                }
-            }
+            val selectedCities = selectedCity?.let { listOf(it) } ?: emptyList()
 
             // Sofa type: index 0 = "Any", indices 1+ map to SofaType values
             val sofaTypeIndex = binding.sofaTypeSpinner.selectedItemPosition
@@ -93,7 +89,7 @@ class SearchActivity : AppCompatActivity() {
 
             val intent = ResultsActivity.newIntent(
                 context       = this,
-                cityNames     = checkedCities.map { it.name },
+                cityNames     = selectedCities.map { it.name },
                 minPriceCents = minPriceCents,
                 maxPriceCents = maxPriceCents,
                 hasFreeWifi   = hasFreeWifi,
