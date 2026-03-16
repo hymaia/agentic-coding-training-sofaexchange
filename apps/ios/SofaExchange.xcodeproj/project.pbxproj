@@ -12,8 +12,6 @@
 		6E029FED58F8C0B05FF2ED59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D59D423ADE49A659FC46576 /* AppDelegate.swift */; };
 		9C5A622166FF487AFBBC4808 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2720CCD7C17A43C7ED255434 /* Foundation.framework */; };
 		A7C317A9B9F904608D623DA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C26B10605992FA1124139A6 /* SceneDelegate.swift */; };
-		E29030F8CEBEC5473069BDCC /* ListingDTOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B537172A9632F68B39142FC /* ListingDTOTests.swift */; };
-		F52FA7E5B16B36A98ECA07A1 /* SearchListingsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE99DE55AAB8BD3635A9010E /* SearchListingsUseCaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,10 +31,8 @@
 		420F08502F678233004E8E24 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4EDC4A7902CA9D8A3892E9B8 /* SofaExchangeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SofaExchangeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C26B10605992FA1124139A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6B537172A9632F68B39142FC /* ListingDTOTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListingDTOTests.swift; sourceTree = "<group>"; };
 		7C18DA6D766105281D24908D /* SofaExchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SofaExchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D59D423ADE49A659FC46576 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE99DE55AAB8BD3635A9010E /* SearchListingsUseCaseTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchListingsUseCaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -76,8 +72,6 @@
 		62BC81887F619F5DB93D4305 /* SofaExchangeTests */ = {
 			isa = PBXGroup;
 			children = (
-				6B537172A9632F68B39142FC /* ListingDTOTests.swift */,
-				FE99DE55AAB8BD3635A9010E /* SearchListingsUseCaseTests.swift */,
 			);
 			path = SofaExchangeTests;
 			sourceTree = "<group>";
@@ -218,8 +212,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29030F8CEBEC5473069BDCC /* ListingDTOTests.swift in Sources */,
-				F52FA7E5B16B36A98ECA07A1 /* SearchListingsUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

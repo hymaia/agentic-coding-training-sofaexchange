@@ -1,4 +1,4 @@
-import Alamofire
+import Foundation
 
 final class ListingsRemoteDataSource {
     private let baseURL: String
@@ -8,19 +8,27 @@ final class ListingsRemoteDataSource {
     }
 
     func fetchListings(query: SearchQuery) async throws -> [ListingDTO] {
-        var params: Parameters = [:]
-        if !query.cities.isEmpty {
-            // Alamofire encodes arrays as repeated keys automatically
-            params["city"] = query.cities.map(\.rawValue)
+        guard var components = URLComponents(string: "\(baseURL)/listings") else {
+            throw URLError(.badURL)
         }
-        if let min = query.minPriceCents  { params["minPriceCents"] = min }
-        if let max = query.maxPriceCents  { params["maxPriceCents"] = max }
-        if let wifi = query.hasFreeWifi   { params["hasFreeWifi"]   = wifi }
-        if let type = query.sofaType      { params["sofaType"]      = type.rawValue }
 
-        return try await AF
-            .request("\(baseURL)/listings", parameters: params)
-            .serializingDecodable([ListingDTO].self)
-            .value
+        var queryItems: [URLQueryItem] = []
+        queryItems.append(contentsOf: query.cities.map { URLQueryItem(name: "city", value: $0.rawValue) })
+        if let min = query.minPriceCents { queryItems.append(URLQueryItem(name: "minPriceCents", value: String(min))) }
+        if let max = query.maxPriceCents { queryItems.append(URLQueryItem(name: "maxPriceCents", value: String(max))) }
+        if let wifi = query.hasFreeWifi { queryItems.append(URLQueryItem(name: "hasFreeWifi", value: String(wifi))) }
+        if let type = query.sofaType { queryItems.append(URLQueryItem(name: "sofaType", value: type.rawValue)) }
+        components.queryItems = queryItems.isEmpty ? nil : queryItems
+
+        guard let url = components.url else {
+            throw URLError(.badURL)
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+
+        return try JSONDecoder().decode([ListingDTO].self, from: data)
     }
 }
