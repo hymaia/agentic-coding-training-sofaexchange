@@ -1,0 +1,7 @@
+sofaexchange:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ./sofaexchange.duckdb
+      threads: 1

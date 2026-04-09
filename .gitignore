@@ -55,3 +55,11 @@ local.properties
 
 # ── Vite ─────────────────────────────────────────────────────────────────────
 .vite/
+
+# ── Python / dbt ─────────────────────────────────────────────────────────────
+.venv/
+__pycache__/
+*.pyc
+apps/analytics/target/
+apps/analytics/dbt_packages/
+apps/analytics/sofaexchange.duckdb
