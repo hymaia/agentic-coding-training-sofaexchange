@@ -18,8 +18,9 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('stg_cities')
-              field: city_key
+              arguments:
+                to: ref('stg_cities')
+                field: city_key
       - name: price_per_night_eur
         description: "Price per night in euros."
         tests:

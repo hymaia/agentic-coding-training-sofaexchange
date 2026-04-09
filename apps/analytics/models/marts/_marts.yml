@@ -1,11 +1,15 @@
 version: 2
 
 models:
-  - name: sofas_by_city
-    description: "Number of sofas and average price per city, with multilingual city names."
+  - name: sofas
+    description: "One row per sofa listing, enriched with multilingual city names."
     columns:
-      - name: city_key
+      - name: id
         tests: [not_null, unique]
+      - name: title
+        tests: [not_null]
+      - name: city_key
+        tests: [not_null]
       - name: city_en
         tests: [not_null]
       - name: city_fr
@@ -14,17 +18,9 @@ models:
         tests: [not_null]
       - name: country_code
         tests: [not_null]
-      - name: sofa_count
+      - name: price_per_night_eur
         tests: [not_null]
-      - name: avg_price_eur
-        tests: [not_null]
-
-  - name: sofas_by_sofa_type
-    description: "Number of sofas and average price per sofa type."
-    columns:
       - name: sofa_type
-        tests: [not_null, unique]
-      - name: sofa_count
         tests: [not_null]
-      - name: avg_price_eur
+      - name: has_free_wifi
         tests: [not_null]
