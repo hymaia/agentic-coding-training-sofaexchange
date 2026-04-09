@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: sofas
-    description: "One row per sofa listing, enriched with multilingual city names."
+    description: "One row per sofa listing, enriched with multilingual city names and price category."
     columns:
       - name: id
         tests: [not_null, unique]
@@ -10,17 +10,23 @@ models:
         tests: [not_null]
       - name: city_key
         tests: [not_null]
-      - name: city_en
-        tests: [not_null]
-      - name: city_fr
-        tests: [not_null]
-      - name: city_it
-        tests: [not_null]
       - name: country_code
         tests: [not_null]
       - name: price_per_night_eur
         tests: [not_null]
       - name: sofa_type
-        tests: [not_null]
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['SOFA_BED', 'SIMPLE_SOFA']
       - name: has_free_wifi
+        tests: [not_null]
+      - name: price_category
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['BUDGET', 'STANDARD', 'PREMIUM']
+      - name: is_convertible
         tests: [not_null]

@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: int_sofas_enriched
+    description: "Sofas enriched with city names and price category. SOFA_BED and SIMPLE_SOFA have different price thresholds."
+    columns:
+      - name: id
+        tests: [not_null, unique]
+      - name: price_category
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['BUDGET', 'STANDARD', 'PREMIUM']
+      - name: is_convertible
+        tests: [not_null]
+
+unit_tests:
+  - name: test_sofa_bed_premium_threshold
+    description: "A SOFA_BED at 90€ should be PREMIUM (threshold >= 80€)"
+    model: int_sofas_enriched
+    given:
+      - input: ref('stg_sofas')
+        rows:
+          - {id: "test-001", title: "Luxury bed", city: "PARIS", price_per_night_eur: 90.00, sofa_type: "SOFA_BED", has_free_wifi: true, created_at: "2024-01-01", updated_at: "2024-01-01"}
+      - input: ref('stg_cities')
+        rows:
+          - {city_key: "PARIS", country_code: "FR", city_en: "Paris", city_fr: "Paris", city_it: "Parigi"}
+    expect:
+      rows:
+        - {id: "test-001", price_category: "PREMIUM", is_convertible: true}
+
+  - name: test_simple_sofa_different_threshold
+    description: "A SIMPLE_SOFA at 45€ should be STANDARD (threshold >= 30€ for SIMPLE_SOFA, not 40€ like SOFA_BED)"
+    model: int_sofas_enriched
+    given:
+      - input: ref('stg_sofas')
+        rows:
+          - {id: "test-002", title: "Simple sofa", city: "PARIS", price_per_night_eur: 45.00, sofa_type: "SIMPLE_SOFA", has_free_wifi: false, created_at: "2024-01-01", updated_at: "2024-01-01"}
+      - input: ref('stg_cities')
+        rows:
+          - {city_key: "PARIS", country_code: "FR", city_en: "Paris", city_fr: "Paris", city_it: "Parigi"}
+    expect:
+      rows:
+        - {id: "test-002", price_category: "STANDARD", is_convertible: false}
+
+  - name: test_sofa_bed_budget_category
+    description: "A SOFA_BED at 30€ should be BUDGET (below 40€ threshold)"
+    model: int_sofas_enriched
+    given:
+      - input: ref('stg_sofas')
+        rows:
+          - {id: "test-003", title: "Budget bed", city: "BERLIN", price_per_night_eur: 30.00, sofa_type: "SOFA_BED", has_free_wifi: false, created_at: "2024-01-01", updated_at: "2024-01-01"}
+      - input: ref('stg_cities')
+        rows:
+          - {city_key: "BERLIN", country_code: "DE", city_en: "Berlin", city_fr: "Berlin", city_it: "Berlino"}
+    expect:
+      rows:
+        - {id: "test-003", price_category: "BUDGET", is_convertible: true}
