@@ -1,0 +1,30 @@
+id,title,city,price_per_night_eur,sofa_type,has_free_wifi,created_at,updated_at
+listing-001,Comfy sofa bed near Tower Bridge,LONDON,45.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-002,Simple sofa in Shoreditch flat,LONDON,28.00,SIMPLE_SOFA,true,2024-01-01,2024-01-01
+listing-003,Quiet sofa near Hyde Park,LONDON,60.00,SOFA_BED,false,2024-01-01,2024-01-01
+listing-004,Budget sofa in East London,LONDON,15.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-005,Luxury sofa bed Kensington,LONDON,150.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-006,Sofa in Marais apartment,PARIS,55.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-007,Simple sofa near Eiffel Tower,PARIS,70.00,SIMPLE_SOFA,true,2024-01-01,2024-01-01
+listing-008,Budget sofa Belleville,PARIS,20.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-009,Sofa bed in Navigli loft,MILAN,48.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-010,Simple sofa Brera district,MILAN,32.00,SIMPLE_SOFA,true,2024-01-01,2024-01-01
+listing-011,Budget sofa near Duomo,MILAN,21.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-012,Cosy sofa near Retiro Park,MADRID,39.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-013,Simple sofa Malasana,MADRID,25.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-014,Sofa bed near Gran Via,MADRID,52.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-015,Sofa bed in Alfama,LISBON,35.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-016,Simple sofa Bairro Alto,LISBON,22.00,SIMPLE_SOFA,true,2024-01-01,2024-01-01
+listing-017,Budget sofa near LX Factory,LISBON,18.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-018,Sofa bed in Mitte,BERLIN,30.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-019,Simple sofa Prenzlauer Berg,BERLIN,18.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-020,Sofa in Kreuzberg studio,BERLIN,24.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-021,Sofa bed near St Stephens Green,DUBLIN,50.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-022,Simple sofa in Temple Bar,DUBLIN,33.00,SIMPLE_SOFA,true,2024-01-01,2024-01-01
+listing-023,Budget sofa Docklands,DUBLIN,20.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-024,Sofa bed in Old Town,EDINBURGH,42.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-025,Simple sofa Leith,EDINBURGH,26.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01
+listing-026,Sofa near Edinburgh Castle,EDINBURGH,55.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-027,Sofa bed near Belvedere,VIENNA,46.00,SOFA_BED,true,2024-01-01,2024-01-01
+listing-028,Simple sofa Naschmarkt area,VIENNA,29.00,SIMPLE_SOFA,true,2024-01-01,2024-01-01
+listing-029,Budget sofa in Leopoldstadt,VIENNA,19.00,SIMPLE_SOFA,false,2024-01-01,2024-01-01

@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: stg_sofas
+    description: "Staged sofas from the SofaExchange seed data."
+    columns:
+      - name: id
+        description: "Unique sofa listing identifier."
+        tests:
+          - unique
+          - not_null
+      - name: title
+        description: "Listing title."
+        tests:
+          - not_null
+      - name: city
+        description: "City key where the sofa is located (FK to stg_cities)."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_cities')
+                field: city_key
+      - name: price_per_night_eur
+        description: "Price per night in euros."
+        tests:
+          - not_null
+      - name: sofa_type
+        description: "Type of sofa."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - 'SOFA_BED'
+                  - 'SIMPLE_SOFA'
+      - name: has_free_wifi
+        description: "Whether free WiFi is included."
+        tests:
+          - not_null
+
+  - name: stg_cities
+    description: "Reference table of cities with multilingual names."
+    columns:
+      - name: city_key
+        description: "Uppercase city key used as FK in stg_sofas."
+        tests:
+          - unique
+          - not_null
+      - name: country_code
+        description: "ISO 3166-1 alpha-2 country code."
+        tests:
+          - not_null
+      - name: city_en
+        description: "City name in English."
+        tests:
+          - not_null
+      - name: city_fr
+        description: "City name in French."
+        tests:
+          - not_null
+      - name: city_it
+        description: "City name in Italian."
+        tests:
+          - not_null
